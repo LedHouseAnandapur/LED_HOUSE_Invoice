@@ -75,13 +75,43 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   display:flex;flex-direction:column;
   position:relative;overflow:hidden;
 }
+/* Outer blue border inset ~1cm (38px) from page edge */
+.a4::before{
+  content:'';position:absolute;
+  top:38px;left:38px;right:38px;bottom:38px;
+  border:2.5px solid #1d4ed8;
+  pointer-events:none;z-index:20;
+}
+/* Thin inner accent line */
+.a4::after{
+  content:'';position:absolute;
+  top:43px;left:43px;right:43px;bottom:43px;
+  border:1px solid #93c5fd;
+  pointer-events:none;z-index:20;
+}
+/* Gold corner accents */
+.a4-corner-tl,.a4-corner-tr,.a4-corner-bl,.a4-corner-br{
+  position:absolute;width:16px;height:16px;z-index:21;pointer-events:none;
+}
+.a4-corner-tl{top:32px;left:32px;border-top:2.5px solid #f59e0b;border-left:2.5px solid #f59e0b}
+.a4-corner-tr{top:32px;right:32px;border-top:2.5px solid #f59e0b;border-right:2.5px solid #f59e0b}
+.a4-corner-bl{bottom:32px;left:32px;border-bottom:2.5px solid #f59e0b;border-left:2.5px solid #f59e0b}
+.a4-corner-br{bottom:32px;right:32px;border-bottom:2.5px solid #f59e0b;border-right:2.5px solid #f59e0b}
 
 /* WATERMARK */
 .wm{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.04;z-index:10}
 .wm span{position:absolute;font-size:28px;font-weight:900;color:#1e293b;transform:rotate(-45deg);white-space:nowrap}
 
+/* INNER CONTENT WRAPPER — sits inside the 1cm border */
+.a4-inner{
+  position:absolute;
+  top:48px;left:48px;right:48px;bottom:48px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
 /* HEADER */
-.a4-header{padding:10px 12px 8px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--blue)}
+.a4-header{padding:10px 0 8px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--blue)}
 .co-logo{width:72px;height:72px;object-fit:contain}
 .co-info{margin-left:8px}
 .co-name{font-size:28px;font-weight:900;color:var(--gray900);line-height:1;letter-spacing:.02em}
@@ -93,7 +123,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
 .inv-badge-meta strong{font-weight:600}
 
 /* BILL/SHIP */
-.party-section{padding:6px 12px;background:var(--gray50)}
+.party-section{padding:6px 0;background:var(--gray50)}
 .party-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .party-box{background:#fff;padding:6px 8px;border-radius:5px;border:1px solid var(--gray200);box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .party-box-title{font-size:6px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--blue);padding-bottom:2px;margin-bottom:3px}
@@ -101,7 +131,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
 .party-detail{font-size:7px;color:var(--gray600);margin-top:2px;line-height:1.6}
 
 /* ITEMS TABLE */
-.items-section{padding:6px 12px}
+.items-section{padding:6px 0}
 .items-table{width:100%;border-collapse:collapse;font-size:8px}
 .items-table thead tr{background:linear-gradient(90deg,var(--blue) 0%,var(--blue2) 100%);color:#fff}
 .items-table thead th{padding:4px 4px;font-weight:600;font-size:7px;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--blue2)}
@@ -113,7 +143,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
 .items-table tbody td:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)){text-align:right}
 
 /* BOTTOM SECTION */
-.bottom-section{padding:6px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
+.bottom-section{padding:6px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
 
 /* LEFT */
 .bank-upi-box{background:linear-gradient(135deg,#eff6ff,#eef2ff);border:2px solid var(--blue-border);border-radius:6px;padding:8px;display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
@@ -147,7 +177,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
 .sig-label-text{font-size:8px;color:var(--gray600)}
 
 /* FOOTER */
-.a4-footer{background:var(--gray100);border-top:1px solid var(--gray300);padding:5px 12px;margin-top:auto}
+.a4-footer{background:var(--gray100);border-top:1px solid var(--gray300);padding:5px 0;margin-top:auto}
 .footer-text{font-size:6px;font-style:italic;color:var(--gray500);text-align:center}
 
 /* print */
@@ -181,7 +211,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   <!-- Logo -->
   <div class="sec-label">🏢 Company Logo</div>
   <div class="logo-upload">
-    <div id="logoThumb" class="logo-placeholder">🖼</div>
+    <img id="logoThumb" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzFlM2E4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzZWIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9Imdsb3ciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmJiZjI0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2Y1OWUwYiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InNoYWRvdyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTQwJSI+CiAgICAgIDxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIyIiBzdGREZXZpYXRpb249IjMiIGZsb29kLWNvbG9yPSIjMDAwMDAwMzMiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk1IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzNiODJmNiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz4KCiAgPCEtLSBIb3VzZSBzaGFwZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwMCwyOCAxNTUsNzIgMTU1LDE0OCA0NSwxNDggNDUsNzIiIGZpbGw9IiMxZTQwYWYiIHN0cm9rZT0iIzYwYTVmYSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIFJvb2YgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIxMDAsMjIgMTYyLDc0IDM4LDc0IiBmaWxsPSIjMjU2M2ViIiBzdHJva2U9IiM5M2M1ZmQiIHN0cm9rZS13aWR0aD0iMS41Ii8+CgogIDwhLS0gRG9vciAtLT4KICA8cmVjdCB4PSI4NyIgeT0iMTEwIiB3aWR0aD0iMjYiIGhlaWdodD0iMzgiIHJ4PSIxMyIgZmlsbD0iIzFlM2E4YSIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjEiLz4KCiAgPCEtLSBXaW5kb3cgKGJ1bGIgc2hhcGUpIC0tPgogIDxlbGxpcHNlIGN4PSIxMDAiIGN5PSI5MSIgcng9IjE4IiByeT0iMTYiIGZpbGw9InVybCgjZ2xvdykiIGZpbHRlcj0idXJsKCNzaGFkb3cpIi8+CiAgPCEtLSBCdWxiIGJhc2UgLS0+CiAgPHJlY3QgeD0iOTMiIHk9IjEwNSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjZjU5ZTBiIi8+CiAgPHJlY3QgeD0iOTUiIHk9IjEwOSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiNkOTc3MDYiLz4KCiAgPCEtLSBMaWdodCByYXlzIC0tPgogIDxsaW5lIHgxPSIxMDAiIHkxPSI2NSIgeDI9IjEwMCIgeTI9IjU4IiBzdHJva2U9IiNmYmJmMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMTE2IiB5MT0iNzAiIHgyPSIxMjEiIHkyPSI2NCIgc3Ryb2tlPSIjZmJiZjI0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC44Ii8+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iNzAiIHgyPSI3OSIgeTI9IjY0IiBzdHJva2U9IiNmYmJmMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMTIxIiB5MT0iODUiIHgyPSIxMjgiIHkyPSI4MiIgc3Ryb2tlPSIjZmJiZjI0IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz4KICA8bGluZSB4MT0iNzkiIHkxPSI4NSIgeDI9IjcyIiB5Mj0iODIiIHN0cm9rZT0iI2ZiYmYyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC42Ii8+CgogIDwhLS0gQ29tcGFueSBuYW1lIC0tPgogIDx0ZXh0IHg9IjEwMCIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIGxldHRlci1zcGFjaW5nPSIyIj5MRUQ8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSIxODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzkzYzVmZCIgbGV0dGVyLXNwYWNpbmc9IjMiPkhPVVNFPC90ZXh0Pgo8L3N2Zz4K" class="logo-preview" alt="logo"/>
     <label class="logo-upload-label" for="logoFile">Upload Logo (PNG/JPG)</label>
     <input type="file" id="logoFile" accept="image/*" onchange="handleLogo(event)"/>
   </div>
@@ -189,11 +219,11 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   <!-- Seller -->
   <div class="sec-label">🏢 Your Business (Seller)</div>
   <div class="f"><label>Company Name *</label><input id="s_name" placeholder="e.g. LED House" oninput="generate()"/></div>
-  <div class="f"><label>GSTIN *</label><input id="s_gstin" placeholder="22AAAAA0000A1Z5" maxlength="15" oninput="generate()"/></div>
+  <div class="f"><label>GSTIN *</label><input id="s_gstin" placeholder="21EVTPR8050M1ZT" maxlength="15" oninput="generate()"/></div>
   <div class="f"><label>Address</label><textarea id="s_addr" placeholder="Shop No, Street, City, State – PIN" oninput="generate()"></textarea></div>
   <div class="row2">
-    <div class="f"><label>Phone</label><input id="s_phone" placeholder="+91 98765 43210" oninput="generate()"/></div>
-    <div class="f"><label>Email</label><input id="s_email" placeholder="info@co.com" oninput="generate()"/></div>
+    <div class="f"><label>Phone</label><input id="s_phone" placeholder="+91 9124081685" oninput="generate()"/></div>
+    <div class="f"><label>Email</label><input id="s_email" placeholder="ledhouseanandapur@gmail.com" oninput="generate()"/></div>
   </div>
 
   <!-- Invoice Meta -->
@@ -237,7 +267,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   <div class="sec-label">🏦 Bank Details</div>
   <div class="f"><label>Bank Name</label><input id="bank_name" placeholder="HDFC Bank" oninput="generate()"/></div>
   <div class="row2">
-    <div class="f"><label>Account No</label><input id="bank_acc" placeholder="50200000000000" oninput="generate()"/></div>
+    <div class="f"><label>Account No</label><input id="bank_acc" placeholder="50200085544700" oninput="generate()"/></div>
     <div class="f"><label>IFSC Code</label><input id="bank_ifsc" placeholder="HDFC0003343" oninput="generate()"/></div>
   </div>
   <div class="row2">
@@ -272,7 +302,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
 
 <script>
 // ─── STATE ───
-let logoSrc = null;
+let logoSrc = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzFlM2E4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzZWIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9Imdsb3ciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmJiZjI0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2Y1OWUwYiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InNoYWRvdyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTQwJSI+CiAgICAgIDxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIyIiBzdGREZXZpYXRpb249IjMiIGZsb29kLWNvbG9yPSIjMDAwMDAwMzMiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk1IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzNiODJmNiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz4KCiAgPCEtLSBIb3VzZSBzaGFwZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwMCwyOCAxNTUsNzIgMTU1LDE0OCA0NSwxNDggNDUsNzIiIGZpbGw9IiMxZTQwYWYiIHN0cm9rZT0iIzYwYTVmYSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIFJvb2YgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIxMDAsMjIgMTYyLDc0IDM4LDc0IiBmaWxsPSIjMjU2M2ViIiBzdHJva2U9IiM5M2M1ZmQiIHN0cm9rZS13aWR0aD0iMS41Ii8+CgogIDwhLS0gRG9vciAtLT4KICA8cmVjdCB4PSI4NyIgeT0iMTEwIiB3aWR0aD0iMjYiIGhlaWdodD0iMzgiIHJ4PSIxMyIgZmlsbD0iIzFlM2E4YSIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjEiLz4KCiAgPCEtLSBXaW5kb3cgKGJ1bGIgc2hhcGUpIC0tPgogIDxlbGxpcHNlIGN4PSIxMDAiIGN5PSI5MSIgcng9IjE4IiByeT0iMTYiIGZpbGw9InVybCgjZ2xvdykiIGZpbHRlcj0idXJsKCNzaGFkb3cpIi8+CiAgPCEtLSBCdWxiIGJhc2UgLS0+CiAgPHJlY3QgeD0iOTMiIHk9IjEwNSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjZjU5ZTBiIi8+CiAgPHJlY3QgeD0iOTUiIHk9IjEwOSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiNkOTc3MDYiLz4KCiAgPCEtLSBMaWdodCByYXlzIC0tPgogIDxsaW5lIHgxPSIxMDAiIHkxPSI2NSIgeDI9IjEwMCIgeTI9IjU4IiBzdHJva2U9IiNmYmJmMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMTE2IiB5MT0iNzAiIHgyPSIxMjEiIHkyPSI2NCIgc3Ryb2tlPSIjZmJiZjI0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC44Ii8+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iNzAiIHgyPSI3OSIgeTI9IjY0IiBzdHJva2U9IiNmYmJmMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMTIxIiB5MT0iODUiIHgyPSIxMjgiIHkyPSI4MiIgc3Ryb2tlPSIjZmJiZjI0IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz4KICA8bGluZSB4MT0iNzkiIHkxPSI4NSIgeDI9IjcyIiB5Mj0iODIiIHN0cm9rZT0iI2ZiYmYyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC42Ii8+CgogIDwhLS0gQ29tcGFueSBuYW1lIC0tPgogIDx0ZXh0IHg9IjEwMCIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIGxldHRlci1zcGFjaW5nPSIyIj5MRUQ8L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSIxODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzkzYzVmZCIgbGV0dGVyLXNwYWNpbmc9IjMiPkhPVVNFPC90ZXh0Pgo8L3N2Zz4K";
 let itemCount = 0;
 
 // ─── HELPERS ───
@@ -311,7 +341,7 @@ function handleLogo(e){
   r.onload=ev=>{
     logoSrc=ev.target.result;
     const thumb=document.getElementById('logoThumb');
-    thumb.outerHTML=`<img id="logoThumb" src="${logoSrc}" class="logo-preview" alt="logo"/>`;
+    thumb.src=logoSrc;
     generate();
   };
   r.readAsDataURL(file);
@@ -341,7 +371,6 @@ function getItems(){
   return [...document.querySelectorAll('.item-row')].map(row=>{
     const id=row.id.split('_')[1];
     const rawDesc=document.getElementById('id_'+id).value||'Item';
-    // Extract HSN from desc if written as "Desc | HSN: 1234"
     const hsnMatch=rawDesc.match(/HSN[:\s]+([0-9]+)/i);
     const hsn=hsnMatch?hsnMatch[1]:'';
     const desc=rawDesc.replace(/\|?\s*HSN[:\s]+[0-9]+/gi,'').trim();
@@ -373,7 +402,6 @@ function generate(){
   items.forEach(i=>{ sub+=i.taxable; totalGST+=i.gstAmt; });
   const grand=sub+totalGST;
 
-  // GST summary map
   const gstMap={};
   items.forEach(i=>{
     if(!gstMap[i.gst]) gstMap[i.gst]={taxable:0,gstAmt:0};
@@ -381,7 +409,6 @@ function generate(){
     gstMap[i.gst].gstAmt+=i.gstAmt;
   });
 
-  // Tax rows in totals
   let taxRows='';
   Object.entries(gstMap).forEach(([rate,d])=>{
     if(+rate===0) return;
@@ -394,7 +421,6 @@ function generate(){
     }
   });
 
-  // Table rows
   let tRows='';
   items.forEach((it,i)=>{
     const taxRate=it.gst;
@@ -439,10 +465,9 @@ function generate(){
 
   const html=`
 <div class="a4" id="a4doc">
-  <!-- WATERMARK -->
   <div class="wm">${buildWM(sName)}</div>
 
-  <!-- HEADER -->
+  <div class="a4-inner">
   <header class="a4-header">
     <div style="display:flex;align-items:flex-start;gap:8px">
       ${logoHtml}
@@ -465,7 +490,6 @@ function generate(){
     </div>
   </header>
 
-  <!-- BILL TO / SHIP TO -->
   <section class="party-section">
     <div class="party-grid">
       <div class="party-box">
@@ -485,7 +509,6 @@ function generate(){
     </div>
   </section>
 
-  <!-- ITEMS TABLE -->
   <section class="items-section">
     <table class="items-table">
       <thead>
@@ -504,13 +527,8 @@ function generate(){
     </table>
   </section>
 
-  <!-- BOTTOM -->
   <section class="bottom-section">
-
-    <!-- LEFT -->
     <div style="display:flex;flex-direction:column;gap:6px">
-
-      <!-- Bank + UPI -->
       <div class="bank-upi-box">
         <div class="bank-details-left">
           <div class="bank-title">Bank Details</div>
@@ -527,18 +545,13 @@ function generate(){
           <div class="upi-label">Scan to Pay (UPI)<br/>${cur}${grandRounded.toLocaleString('en-IN')}</div>
         </div>`:`<div class="upi-right" style="min-width:80px;display:flex;align-items:center;justify-content:center;border:2px dashed #d1d5db;border-radius:6px;font-size:7px;color:#9ca3af;text-align:center;padding:6px">Add UPI ID<br/>for QR code</div>`}
       </div>
-
-      <!-- Terms -->
       <div class="terms-box">
         <div class="terms-title">Terms &amp; Conditions</div>
         <div class="terms-text">${terms.replace(/\n/g,'<br/>')}</div>
       </div>
     </div>
 
-    <!-- RIGHT -->
     <div style="display:flex;flex-direction:column;justify-content:space-between">
-
-      <!-- Totals -->
       <div class="totals-box">
         <div class="t-row"><span>Taxable Value</span><strong>${fmt(sub,cur)}</strong></div>
         ${taxRows}
@@ -548,25 +561,29 @@ function generate(){
         </div>
         <div class="amt-words">${inWords(grandRounded)}</div>
       </div>
-
-      <!-- Signature -->
       <div class="sig-block">
         <div class="sig-for">For ${sName}</div>
         <div class="sig-line-el">
           <div class="sig-label-text">Authorized Signatory</div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="a4-footer">
     <p class="footer-text">* This is a computer generated invoice</p>
   </footer>
+  </div>
 </div>`;
 
   document.getElementById('invoiceOut').innerHTML=html;
+  // Add corner decoration divs
+  const a4=document.getElementById('a4doc');
+  if(a4){
+    ['a4-corner-tl','a4-corner-tr','a4-corner-bl','a4-corner-br'].forEach(cls=>{
+      const d=document.createElement('div');d.className=cls;a4.appendChild(d);
+    });
+  }
 }
 
 // ─── DOWNLOAD PDF ───
@@ -593,46 +610,45 @@ async function downloadPDF(){
 // ─── RESET ───
 function resetAll(){
   if(!confirm('Reset everything?')) return;
-  ['s_name','s_gstin','s_addr','s_phone','s_email',
-   'inv_no','b_name','b_gstin','b_addr','b_phone','b_email',
-   'sh_name','sh_addr','sh_phone','bank_name','bank_acc','bank_ifsc','bank_branch','upi_id','notes','terms'].forEach(id=>{
+  // Clear buyer/invoice fields only
+  ['inv_no','b_name','b_gstin','b_addr','b_phone','b_email',
+   'sh_name','sh_addr','sh_phone'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.value='';
   });
-  document.getElementById('inv_date').value=today();
   document.getElementById('itemsList').innerHTML=''; itemCount=0;
-  logoSrc=null;
-  const t=document.getElementById('logoThumb');
-  t.outerHTML='<div id="logoThumb" class="logo-placeholder">🖼</div>';
-  // Defaults
+  document.getElementById('inv_date').value=today();
+  // Restore company / seller details
+  document.getElementById('s_name').value='LED House';
+  document.getElementById('s_gstin').value='27AABCL1234D1Z5';
+  document.getElementById('s_phone').value='+91 81448 68707';
+  document.getElementById('s_email').value='info@ledhouse.in';
+  document.getElementById('s_addr').value='Anandapur Bridge Chhaka, Anandapur, Keonjhar-758021';
+  document.getElementById('bank_name').value='HDFC Bank';
+  document.getElementById('bank_acc').value='50200085544700';
+  document.getElementById('bank_ifsc').value='HDFC0003343';
+  document.getElementById('bank_branch').value='Andheri West';
+  document.getElementById('upi_id').value='8144868707@ybl';
   document.getElementById('notes').value='UPI / Cash / Bank Transfer / Cheque';
   document.getElementById('terms').value='Goods once sold will not be taken back.\nPayment due within 7 days of invoice.\nE. & O.E.';
-  addItem('LED Strip Light (5m)', '',2, 850, 18);
-  addItem('LED Driver 60W', '', 1, 1200, 18);
   generate();
 }
 
 // ─── INIT ───
 document.getElementById('inv_date').value = today();
-document.getElementById('inv_no').value = 'INV-2024-001';
+// Pre-fill seller / company details
+document.getElementById('s_name').value = 'LED House';
+document.getElementById('s_gstin').value = '27AABCL1234D1Z5';
+document.getElementById('s_phone').value = '+91 81448 68707';
+document.getElementById('s_email').value = 'info@ledhouse.in';
+document.getElementById('s_addr').value = 'Anandapur Bridge Chhaka, Anandapur, Keonjhar-758021';
+document.getElementById('bank_name').value = 'HDFC Bank';
+document.getElementById('bank_acc').value = '50200085544700';
+document.getElementById('bank_ifsc').value = 'HDFC0003343';
+document.getElementById('bank_branch').value = 'Andheri West';
+document.getElementById('upi_id').value = '8144868707@ybl';
 document.getElementById('notes').value = 'UPI / Cash / Bank Transfer / Cheque';
 document.getElementById('terms').value = 'Goods once sold will not be taken back.\nPayment due within 7 days of invoice.\nE. & O.E.';
-// Sample data
-document.getElementById('s_name').value='LED House';
-document.getElementById('s_gstin').value='27AABCL1234D1Z5';
-document.getElementById('s_phone').value='+91 81448 68707';
-document.getElementById('s_email').value='info@ledhouse.in';
-document.getElementById('s_addr').value='Shop No. 12, Light Market\nMumbai, Maharashtra – 400001';
-document.getElementById('b_name').value='Suresh Electricals';
-document.getElementById('b_addr').value='45 Industrial Area, Pune\nMaharashtra – 411001';
-document.getElementById('b_phone').value='+91 98765 43210';
-document.getElementById('bank_name').value='HDFC Bank';
-document.getElementById('bank_acc').value='50200085544700';
-document.getElementById('bank_ifsc').value='HDFC0003343';
-document.getElementById('bank_branch').value='Andheri West';
-document.getElementById('upi_id').value='8144868707@ybl';
-addItem('LED Strip Light 5m (Warm White) | HSN: 8539', '', 10, 850, 18);
-addItem('LED Driver 60W Waterproof | HSN: 8504', '', 5, 1200, 18);
-addItem('LED Panel Light 18W | HSN: 8539', '', 8, 650, 18);
+// Buyer fields stay blank — just generate
 generate();
 </script>
 </body>
