@@ -219,11 +219,11 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   <!-- Seller -->
   <div class="sec-label">🏢 Your Business (Seller)</div>
   <div class="f"><label>Company Name *</label><input id="s_name" placeholder="e.g. LED House" oninput="generate()"/></div>
-  <div class="f"><label>GSTIN *</label><input id="s_gstin" placeholder="21EVTPR8050M1ZT" maxlength="15" oninput="generate()"/></div>
+  <div class="f"><label>GSTIN *</label><input id="s_gstin" placeholder="22AAAAA0000A1Z5" maxlength="15" oninput="generate()"/></div>
   <div class="f"><label>Address</label><textarea id="s_addr" placeholder="Shop No, Street, City, State – PIN" oninput="generate()"></textarea></div>
   <div class="row2">
-    <div class="f"><label>Phone</label><input id="s_phone" placeholder="+91 9124081685" oninput="generate()"/></div>
-    <div class="f"><label>Email</label><input id="s_email" placeholder="ledhouseanandapur@gmail.com" oninput="generate()"/></div>
+    <div class="f"><label>Phone</label><input id="s_phone" placeholder="+91 98765 43210" oninput="generate()"/></div>
+    <div class="f"><label>Email</label><input id="s_email" placeholder="info@co.com" oninput="generate()"/></div>
   </div>
 
   <!-- Invoice Meta -->
@@ -267,7 +267,7 @@ body{background:#e2e8f0;font-family:var(--font);min-height:100vh;padding:16px}
   <div class="sec-label">🏦 Bank Details</div>
   <div class="f"><label>Bank Name</label><input id="bank_name" placeholder="HDFC Bank" oninput="generate()"/></div>
   <div class="row2">
-    <div class="f"><label>Account No</label><input id="bank_acc" placeholder="50200085544700" oninput="generate()"/></div>
+    <div class="f"><label>Account No</label><input id="bank_acc" placeholder="50200000000000" oninput="generate()"/></div>
     <div class="f"><label>IFSC Code</label><input id="bank_ifsc" placeholder="HDFC0003343" oninput="generate()"/></div>
   </div>
   <div class="row2">
@@ -619,9 +619,9 @@ function resetAll(){
   document.getElementById('inv_date').value=today();
   // Restore company / seller details
   document.getElementById('s_name').value='LED House';
-  document.getElementById('s_gstin').value='27AABCL1234D1Z5';
-  document.getElementById('s_phone').value='+91 81448 68707';
-  document.getElementById('s_email').value='info@ledhouse.in';
+  document.getElementById('s_gstin').value='21EVTPR8050M1ZT';
+  document.getElementById('s_phone').value='+91 9124081685';
+  document.getElementById('s_email').value='ledhouseanandapur@gmail.com';
   document.getElementById('s_addr').value='Anandapur Bridge Chhaka, Anandapur, Keonjhar-758021';
   document.getElementById('bank_name').value='HDFC Bank';
   document.getElementById('bank_acc').value='50200085544700';
@@ -637,9 +637,9 @@ function resetAll(){
 document.getElementById('inv_date').value = today();
 // Pre-fill seller / company details
 document.getElementById('s_name').value = 'LED House';
-document.getElementById('s_gstin').value = '27AABCL1234D1Z5';
-document.getElementById('s_phone').value = '+91 81448 68707';
-document.getElementById('s_email').value = 'info@ledhouse.in';
+document.getElementById('s_gstin').value = '21EVTPR8050M1ZT';
+document.getElementById('s_phone').value = '+91 9124081685';
+document.getElementById('s_email').value = 'ledhouseanandapur@gmail.com';
 document.getElementById('s_addr').value = 'Anandapur Bridge Chhaka, Anandapur, Keonjhar-758021';
 document.getElementById('bank_name').value = 'HDFC Bank';
 document.getElementById('bank_acc').value = '50200085544700';
